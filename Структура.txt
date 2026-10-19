@@ -1,0 +1,22 @@
+.
+├── index.php              # роутер: страницы + AJAX + бэкфилл
+├── bootstrap.php          # PDO, авто-миграции, helpers
+├── config.example.php     # шаблон (config.php в .gitignore)
+├── forecast.php           # парсер TXT/CSV прогнозов
+├── lib/
+│   ├── api.php            # провайдеры MOEX ISS / Yahoo / Stooq
+│   ├── history.php        # чтение/запись history_bars
+│   ├── import.php         # импорт из Yii (cap_stock.csv, прогнозы)
+│   ├── verify.php         # cumprod, MAPE, hit-rate, recent_hits
+│   └── indicators.php     # RSI, SMA, EMA, агрегация
+├── pages/
+│   ├── home.php           # лендинг
+│   ├── stock.php          # график + RSI + SMA/EMA + верификация
+│   ├── accuracy.php       # точность по всем тикерам
+│   ├── compare.php        # сравнение до 5 тикеров
+│   ├── admin.php          # панель
+│   └── admin-login.php
+├── static/
+│   └── style.css
+├── sample-data/           # тестовые CSV
+└── data/                  # кэш (в .gitignore, кроме .gitignore/.htaccess)

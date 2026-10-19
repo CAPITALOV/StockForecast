@@ -1,0 +1,36 @@
+
+### Слои
+
+| Слой | Файлы | Ответственность |
+|---|---|---|
+| **Инфраструктура** | `bootstrap.php`, `config.php` | PDO, миграции, helpers (`url`, `h`, `flash`, `require_admin`) |
+| **Провайдеры** | `lib/api.php` | Внешние API (MOEX, Yahoo, Stooq) + кэш списка тикеров |
+| **Хранилище** | `lib/history.php` | Чтение/запись `history_bars`, авто-регистрация тикера |
+| **Парсинг** | `forecast.php`, `lib/import.php` | TXT/CSV → `[{time, value}]`, импорт из Yii |
+| **Логика** | `lib/verify.php`, `lib/indicators.php` | Верификация, RSI, SMA/EMA, агрегация |
+| **Роутер** | `index.php` | Связывает URL → слой + отдаёт JSON/redirect |
+| **UI** | `pages/*.php`, `static/style.css` | HTML + JS (fetch к `api-*`) |
+
+### Ключевая идея
+
+**HTML-страницы не считают тяжёлые вещи синхронно.** Графики, RSI, MA, верификация — всё подгружается через `fetch()` к `api-*` эндпоинтам. Это позволяет:
+
+- быстро отдавать первую отрисовку
+- не блокировать воркеры PHP
+- легко добавлять новые виджеты (просто новый `case` в `switch`)
+
+**Исключение:** `pages/accuracy.php` и `pages/admin.php` считают на сервере (с кэшем).
+
+---
+
+## 🧩 Как добавить новое
+
+### Новый AJAX-эндпоинт
+
+1. **Добавить `case` в `index.php`:**
+   ```php
+   case 'api-mynew':
+       header('Content-Type: application/json');
+       // ... логика ...
+       echo json_encode(['ok' => true, 'data' => $result], JSON_UNESCAPED_UNICODE);
+       break;

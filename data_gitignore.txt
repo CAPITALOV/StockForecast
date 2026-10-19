@@ -1,0 +1,5 @@
+# всё игнорируем, кроме самого файла и .htaccess
+*
+!.gitignore
+!.htaccess
+!.gitkeep

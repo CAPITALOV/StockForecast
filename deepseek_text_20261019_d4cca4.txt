@@ -1,0 +1,13 @@
+.gitignore
+.gitattributes
+.editorconfig
+config.example.php      ← заменить config.php в репо
+README.md               ← обновить (см. ниже)
+CHANGELOG.md
+DEVELOPMENT.md
+LICENSE
+VERSION
+data/.gitignore
+data/.gitkeep
+sample-data/cap_stock.csv
+sample-data/forecasts.csv

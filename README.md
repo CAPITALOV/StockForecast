@@ -1,6 +1,3 @@
-# KAPITALOV
-KAPITALOV.COM
-[README.md](https://github.com/user-attachments/files/33672770/README.md)
 # StockForecast
 
 Прогнозы и верификация акций MOEX и US. PHP + MySQL.

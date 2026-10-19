@@ -1,0 +1,39 @@
+# --- секреты и локальные настройки ---
+config.php
+.env
+.env.local
+*.local.php
+
+# --- данные и кэш ---
+data/*
+!data/.gitignore
+!data/.htaccess
+
+# --- логи и временные ---
+*.log
+*.log.*
+*.tmp
+*.cache
+error_log
+php_error.log
+
+# --- IDE и редакторы ---
+.idea/
+.vscode/
+*.sublime-*
+*.swp
+*.swo
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- composer ---
+vendor/
+composer.lock
+
+# --- бэкапы ---
+*.bak
+*.orig
+*~
